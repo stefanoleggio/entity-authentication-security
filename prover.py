@@ -12,8 +12,8 @@ class Prover:
 
     def compute_tags(self,c):
         while(True):
-            r_1 = random.uniform(0, self.p-1)
-            digits = str(r_1)[2::]
+            r_1 = random.randint(0, self.p)
+            digits = str(r_1)
             r = 0    
             for digit in digits:
                 r += int(digit)
@@ -21,6 +21,6 @@ class Prover:
                 break
             
         t_1 = pow(self.a,r) % self.p
-        t_2 = round((c-self.k*t_1) * utils.modular_inverse(r,self.p-1))% (self.p-1)
+        t_2 = round((c-self.k*t_1) * utils.modular_inverse(r,self.p-1)) % (self.p-1)
 
         return (t_1, t_2)

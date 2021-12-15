@@ -9,7 +9,7 @@ class Verifier:
         self.k_1 = k_1 # In this case the verifier knows the public key of the Prover
     
     def generate_challenge(self):
-        self.c = random.randint(0, self.p-1)
+        self.c = random.randint(0, self.p)
         return self.c
 
     def authenticate(self, t):
