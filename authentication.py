@@ -1,16 +1,12 @@
 from prover import Prover
 from verifier import Verifier
 import time
-import numpy as np
-import random
 import matplotlib.pyplot as plt
 import math
+import random
 
 def generate_primitive(p):
-    while(True):
-        a = random.randint(0, p)
-        if(math.gcd(p,a) == 1):
-            break
+    a = random.randint(1, p-1)
     return a
 
 def authentication(p,a,k):
@@ -20,25 +16,24 @@ def authentication(p,a,k):
     t = A.compute_tags(B.c)
     return B.authenticate(t)
 
-
 if __name__ == "__main__":
 
     print("\nAuthentication protocol test")
 
     p = 11
-    a = generate_primitive(p)
+    alpha = generate_primitive(p)
     k = 4 # Private key of A
 
-    A = Prover(p,a,k)
+    A = Prover(p,alpha,k)
 
-    B = Verifier(p,a,A.k_1) # In this case B knows the public key of A
+    B = Verifier(p,alpha,A.k_1) # In this case B knows the public key of A
 
     B.generate_challenge()
 
     t = A.compute_tags(B.c)
     print("\nSetup variables")
     print(" p: ", p)
-    print(" a: ",a)
+    print(" a: ",alpha)
     print(" c: ", B.c)
     print("\nKeys of A")
     print(" k: ", k, "(private key)")
@@ -48,19 +43,3 @@ if __name__ == "__main__":
         print(" A is authenticated by B")
     else:
         print(" A is rejected by B")
-
-    p_values = [1187,2707,4339,6073,7841,11527,17291,21211,70241,104147,162881,206413,449399,663517,993793]
-    time_values = []
-
-    for p in p_values:
-        start_time = time.time()
-        a = generate_primitive(p)
-        authentication(p,a,k)
-        end_time = time.time()
-        time_values.append(end_time-start_time)
-
-    plt.xlabel('p')
-    plt.ylabel('time')
-    plt.plot(p_values, time_values,'yo')
-    plt.show()
-

@@ -4,11 +4,11 @@ import math
 
 class Prover:
 
-    def __init__(self, p, a, k):
+    def __init__(self, p, alpha, k):
         self.p = p
-        self.a = a
+        self.alpha = alpha
         self.k = k # Private key
-        self.k_1 = pow(self.a,self.k)%self.p # Public key
+        self.k_1 = pow(self.alpha,self.k)%self.p # Public key
 
     def compute_tags(self,c):
         while(True):
@@ -19,8 +19,9 @@ class Prover:
                 r += int(digit)
             if(math.gcd(r,(self.p-1)) == 1):
                 break
-            
-        t_1 = pow(self.a,r) % self.p
-        t_2 = round((c-self.k*t_1) * utils.modular_inverse(r,self.p-1)) % (self.p-1)
+        self.r = r
+
+        t_1 = pow(self.alpha,r) % self.p
+        t_2 = (c-self.k*t_1) * utils.modular_inverse(r,self.p-1) % (self.p-1)
 
         return (t_1, t_2)
