@@ -1,12 +1,10 @@
 from prover import Prover
 from verifier import Verifier
-import time
 import matplotlib.pyplot as plt
-import math
 import random
 
 def generate_primitive(p):
-    a = random.randint(1, p-1)
+    a = random.randint(0, p)
     return a
 
 def authentication(p,a,k):

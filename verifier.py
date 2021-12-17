@@ -18,3 +18,10 @@ class Verifier:
         if(s == s_tilda):
             return True
         return False
+
+    def authenticate_v2(self, t):
+        s = pow(self.alpha,t[0]) % self.p
+        s_tilda = pow(self.k_1, t[1]) * pow(t[1],t[2]) % (self.p)
+        if(s == s_tilda):
+            return True
+        return False
