@@ -1,8 +1,5 @@
-from prover import Prover
-from verifier import Verifier
 import time
 import matplotlib.pyplot as plt
-import math
 import random
 import authentication as auth
 import utils

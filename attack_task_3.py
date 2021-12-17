@@ -1,4 +1,3 @@
-import numpy as np
 import authentication as auth
 from prover import Prover
 from verifier import Verifier

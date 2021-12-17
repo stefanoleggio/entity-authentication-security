@@ -1,8 +1,28 @@
-def modular_inverse(a,m):
-    for x in range(1,m):
-        if((a%m)*(x%m) % m==1):
-            return x
-    raise Exception('The modular inverse does not exist.')
+def modular_inverse(a, m):
+    m0 = m
+    y = 0
+    x = 1
+
+    if (m == 1):
+        raise Exception('The modular inverse does not exist.')
+
+    while (a > 1):
+
+        q = a // m
+
+        t = m
+
+        m = a % m
+        a = t
+        t = y
+
+        y = x - q * y
+        x = t
+
+    if (x < 0):
+        x = x + m0
+
+    return x
 
 def isPrime(k):
     if k==2 or k==3: return True
