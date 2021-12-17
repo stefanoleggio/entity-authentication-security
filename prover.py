@@ -44,4 +44,4 @@ class Prover:
         t_1 = pow(self.alpha,r) % self.p
         t_2 = (u-self.k*t_1) * utils.modular_inverse(r,self.p-1) % (self.p-1)
 
-        return (u, t_1, t_2)
+        return (n, t_1, t_2)

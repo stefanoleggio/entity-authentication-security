@@ -6,7 +6,7 @@ class Verifier:
         self.p = p
         self.alpha = alpha
         self.c = None
-        self.k_1 = k_1 # In this case the verifier knows the public key of the Prover
+        self.k_1 = k_1 # the verifier knows the public key of the Prover
     
     def generate_challenge(self):
         self.c = random.randint(0, self.p-1)
@@ -20,7 +20,8 @@ class Verifier:
         return False
 
     def authenticate_v2(self, t):
-        s = pow(self.alpha,t[0]) % self.p
+        u = (self.c + t[0])%self.p
+        s = pow(self.alpha,u) % self.p
         s_tilda = pow(self.k_1, t[1]) * pow(t[1],t[2]) % (self.p)
         if(s == s_tilda):
             return True
