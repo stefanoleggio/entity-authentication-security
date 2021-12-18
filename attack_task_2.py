@@ -17,13 +17,14 @@ if __name__ == "__main__":
 
     # The r for t_a and t_b is the same:
 
-    k = ((t_b[1]*c_a-t_a[1]*c_b)*utils.modular_inverse((t_a[0]*(t_b[1]-t_a[1]))%(p-1),p-1))%(p-1)
+    k = ((t_b[1]*c_a-t_a[1]*c_b)*utils.modular_inverse((t_a[0]*(t_b[1]-t_a[1])),p-1))%(p-1)
 
     print("key founded: ", k)
     print("Let's test the key ...")
     print("challenge: ", c_c)
 
     # Test k
+    
     C = Prover(p,alpha,k)
     C.k_1 = k_1
     B = Verifier(p,alpha,C.k_1)
