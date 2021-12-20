@@ -8,9 +8,9 @@ if __name__ == "__main__":
 
     k = 2 # This key is randomly choosen (is not the correct key for the k_1 given) just for initialize the Prover object
 
-    k_1 = 7
+    k_1 = 948347
 
-    alpha = 948347
+    alpha = 7
 
     C = Prover(p,alpha,k)
 
